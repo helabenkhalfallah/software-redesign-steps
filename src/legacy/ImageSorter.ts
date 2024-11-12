@@ -4,7 +4,11 @@ interface ImageSortingStrategy {
 
 // Define an Image class (for demonstration purposes)
 export class Image {
-    constructor(public name: string, public date: string, public size: number) {}
+    constructor(
+        public name: string,
+        public date: string,
+        public size: number,
+    ) {}
 }
 
 interface ImageSortingStrategy {
@@ -13,21 +17,21 @@ interface ImageSortingStrategy {
 
 class SortByName implements ImageSortingStrategy {
     sort(images: Image[]): Image[] {
-        console.log("Sorting images by name.");
+        console.log('Sorting images by name.');
         return images.sort((a, b) => a.name.localeCompare(b.name));
     }
 }
 
 class SortByDate implements ImageSortingStrategy {
     sort(images: Image[]): Image[] {
-        console.log("Sorting images by date.");
+        console.log('Sorting images by date.');
         return images.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
     }
 }
 
 class SortBySize implements ImageSortingStrategy {
     sort(images: Image[]): Image[] {
-        console.log("Sorting images by size.");
+        console.log('Sorting images by size.');
         return images.sort((a, b) => a.size - b.size);
     }
 }
@@ -48,14 +52,14 @@ export class ImageSorter {
     // Select the strategy based on the provided string
     private selectSortingStrategy(sortMethod: string): ImageSortingStrategy {
         switch (sortMethod.toLowerCase()) {
-            case "name":
+            case 'name':
                 return new SortByName();
-            case "date":
+            case 'date':
                 return new SortByDate();
-            case "size":
+            case 'size':
                 return new SortBySize();
             default:
-                throw new Error("Invalid sort method");
+                throw new Error('Invalid sort method');
         }
     }
 
