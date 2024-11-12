@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 import { useRole } from '../../../commons/providers/RoleContext.tsx';
+import { useNavigation } from '../../../infrastructure/adapters/navigation/useNavigation.tsx';
 import useFetchImageDetails from '../api/useFetchImageDetails.tsx';
 import { calculatePopularity, canAddToFavorites } from '../commons/ImageUtils.ts';
 import ImageDetailsView from '../components/ImageDetailsView.tsx';
 
 function ImageDetailsPage() {
-    const { imageId } = useParams<{ imageId: string }>();
+    const { getParam } = useNavigation();
+    const imageId = getParam('imageId');
+
     const [favorites, setFavorites] = useState<string[]>(
         JSON.parse(localStorage.getItem('favorites') || '[]'),
     );

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigation } from '../../../infrastructure/adapters/navigation/useNavigation.tsx';
 
 interface ImageDetailsViewProps {
     image: Record<string, string> | null;
@@ -13,6 +13,8 @@ const ImageDetailsView = ({
     userRole,
     addToFavorites,
 }: ImageDetailsViewProps) => {
+    const { Link } = useNavigation();
+
     if (!image) return <p>Loading...</p>;
 
     return (

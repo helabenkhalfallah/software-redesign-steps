@@ -1,12 +1,10 @@
-// pages/ImageListPage.tsx
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigation } from '../../../infrastructure/adapters/navigation/useNavigation.tsx';
 import useFetchImageList from '../api/useFetchImageList.tsx';
 import ImageListView from '../components/ImageListView.tsx';
 
 function ImageListPage() {
     const { images, error } = useFetchImageList();
-    const navigate = useNavigate();
+    const { navigate } = useNavigation();
 
     const handleImageClick = (id: string) => {
         navigate(`/image/${id}`);
