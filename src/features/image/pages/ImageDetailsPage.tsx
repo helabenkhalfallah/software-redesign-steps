@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { useRole } from '../../../commons/providers/RoleContext.tsx';
 import useFetchImageDetails from '../api/useFetchImageDetails.tsx';
 import { calculatePopularity, canAddToFavorites } from '../commons/ImageUtils.ts';
 import ImageDetailsView from '../components/ImageDetailsView.tsx';
@@ -10,20 +11,10 @@ function ImageDetailsPage() {
     const [favorites, setFavorites] = useState<string[]>(
         JSON.parse(localStorage.getItem('favorites') || '[]'),
     );
-    const [userRole, setUserRole] = useState<string>('guest');
     const [popularityScore, setPopularityScore] = useState<number>(0);
 
+    const { userRole } = useRole(); // Access userRole from RoleContext
     const { image, error } = useFetchImageDetails(imageId || '');
-
-    useEffect(() => {
-        const fetchUserRole = async () => {
-            const roleFromAPI = await new Promise<string>((resolve) => {
-                setTimeout(() => resolve('premium'), 1000);
-            });
-            setUserRole(roleFromAPI);
-        };
-        fetchUserRole();
-    }, []);
 
     useEffect(() => {
         if (image) {
