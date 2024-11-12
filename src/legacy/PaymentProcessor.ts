@@ -36,14 +36,14 @@ export class PaymentProcessor {
     // Select the strategy based on the provided string
     private selectPaymentStrategy(paymentMethod: string): PaymentStrategy {
         switch (paymentMethod.toLowerCase()) {
-            case "creditcard":
+            case 'creditcard':
                 return new CreditCardPayment();
-            case "paypal":
+            case 'paypal':
                 return new PayPalPayment();
-            case "bitcoin":
+            case 'bitcoin':
                 return new BitcoinPayment();
             default:
-                throw new Error("Invalid payment method");
+                throw new Error('Invalid payment method');
         }
     }
 
