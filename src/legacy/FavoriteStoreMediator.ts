@@ -37,7 +37,7 @@ export class FavoriteStoreMediator implements FavoriteMediator, FavoriteStateHis
     // saves the new state, and notifies all observers.
     addFavorite(): void {
         this.favoritesCount++;
-        this.saveState();       // Memento Pattern: Save current state for undo/redo
+        this.saveState(); // Memento Pattern: Save current state for undo/redo
         this.notifySubscribers(); // Mediator Pattern: Notify observers of the new count
     }
 
@@ -46,7 +46,7 @@ export class FavoriteStoreMediator implements FavoriteMediator, FavoriteStateHis
     removeFavorite(): void {
         if (this.favoritesCount > 0) {
             this.favoritesCount--;
-            this.saveState();       // Memento Pattern: Save current state for undo/redo
+            this.saveState(); // Memento Pattern: Save current state for undo/redo
             this.notifySubscribers(); // Mediator Pattern: Notify observers of the new count
         }
     }
@@ -102,7 +102,6 @@ export class FavoriteStoreMediator implements FavoriteMediator, FavoriteStateHis
         }
     }
 }
-
 
 export class Toolbar implements FavoriteObserver {
     constructor(private mediator: FavoriteStoreMediator) {
